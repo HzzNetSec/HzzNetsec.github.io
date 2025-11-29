@@ -1,0 +1,20 @@
+{{ define "main" }}
+<h1>{{ .Site.Title }}</h1>
+
+<div class="content">
+    {{ .Content }}
+</div>
+
+{{ $posts := where .Site.RegularPages "Section" "posts" }}
+{{ if $posts }}
+<h2>最新文章</h2>
+<ul>
+    {{ range first 10 $posts }}
+    <li>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <span style="color: #999; font-size: 0.9em;">- {{ .Date.Format "2006-01-02" }}</span>
+    </li>
+    {{ end }}
+</ul>
+{{ end }}
+{{ end }}
